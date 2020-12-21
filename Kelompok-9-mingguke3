@@ -1,0 +1,1578 @@
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
+#include <conio.h>
+#define phi 3.14
+#define MAKS 99
+#include <time.h>
+
+time_t waktuserver; //untuk fungsi waktu
+char nama[MAKS], namaFile[MAKS]; //nilai string maksimal string
+float a, b, c, p, u, v, s, l, r, t, d1, d2, m, n, hasil, hasil2 = 0;  //variable untuk perhitungan rumus luas dan volume
+int x, X, y, Y, z, Z, i, j, N, M, penanda, hasil4, pilih =0; //variable untuk perhitungan rumus luas dan volume
+int hasil3 = 0; //variable untuk perhitungan rumus deret
+char ulang, ptv; //variable untuk looping dan fungsi himpunan
+int temp, q1, q2; //variable untuk tigaM
+float median; //variable untuk tigaM
+float mean; //variable untuk tigaM
+int data[],frekuensi[],modus,max=-1000,sum=0; //variable untuk fungsi tigaM
+float km, hm, dam, dm, cm, mm; //variable untuk konversi
+int himpunan1[MAKS], himpunan2[MAKS], himpunanIrisan[MAKS], himpunanGabungan[MAKS],  himpunanSelisih[MAKS], himpunanKomplemen[MAKS], q; //variable untuk Fungsi Himpunan
+long int f; //variable untuk fungsi FPC
+
+void luas() //Dikerjakan oleh I MADE ANANDA MAHAPUTRA (2005551101)
+{
+//variable "hasil" => menyimpan hasil perhitungan rumus
+//variable p =======> panjang
+//variable l =======> lebar
+//variable t =======> tinggi
+//variable d1 ======> diagonal pertama
+//variable d2 ======> diagonal kedua
+//variable r =======> jari - jari
+//variable a =======> menentukan pilihan user
+
+    printf ("Menghitung Luas Suatu Bidang : \n");
+    printf ("(1) Segitiga  \n");
+    printf ("(2) Segiempat \n");
+    printf ("(3) Trapesium  \n");
+    printf ("(4) Layang - Layang \n");
+    printf ("(5) Lingkaran \n");
+    printf ("MASUKAN KODE  : ");
+
+    scanf ("%f", &a);
+    printf("\n=================================================\n");
+    if (a==1){
+     printf ("\nMenghitung Luas Segitiga\n");
+     printf ("Panjang(cm) : ");
+     scanf ("%f", &p);
+     printf ("\nTinggi(cm)  : ");
+     scanf (" %f", &t);
+
+     hasil = (p*t)/2;
+     printf("\n===============================\n");
+     printf("Pengerjaan:\n =>(Pangjang x Tinggi)/2) \n =>(%.1f x %.1f)/2\n => %.1f",p,t,hasil);
+     printf("\n===============================\n");
+     printf ("\nJadi, Luas Segitiga adalah %.2f cm\n", hasil);
+     printf("\n===============================\n");
+    }
+    else if (a==2){
+     printf ("\nMenghitung Luas Segiempat\n");
+     printf ("Panjang(cm): ");
+     scanf ("%f", &p);
+     printf ("\nLebar(cm)  : ");
+     scanf (" %f", &l);
+
+     hasil = (p*l);
+     printf("\n===============================\n");
+     printf ("\nLuas Segiempat adalah %.2f cm\n", hasil);
+     printf("\n===============================\n");
+    }
+    else if (a==3){
+     printf ("\nMenghitung Luas Trapesium\n");
+     printf ("Panjang Atas(cm)   : ");
+     scanf ("%f", &p);
+     printf ("\nPanjang Bawah(cm)  : ");
+     scanf (" %f", &l);
+     printf ("\ntinggi(cm)         : ");
+     scanf (" %f", &t);
+
+     hasil = ((p+l)*t)/2;
+     printf("\n===============================\n");
+     printf ("\nLuas Trapesium adalah %.2f cm\n", hasil);
+     printf("\n===============================\n");
+ }
+    else if (a==4){
+     printf ("\nMenghitung Luas Layang - Layang\n");
+     printf ("Panjang Diagonal 1(cm)   : ");
+     scanf ("%f", &d1);
+     printf ("\nPanjang Diagonal 2(cm)   : ");
+     scanf (" %f", &d2);
+
+     hasil = (d1*d2)/2;
+     printf("\n====================================\n");
+     printf ("\nLuas Layang - Layang adalah %.2f cm\n", hasil);
+     printf("\n====================================\n");
+ }
+    else if (a==5){
+     printf ("\nMenghitung Luas Lingkaran\n");
+     printf ("Panjang jari - jari(cm)   : ");
+     scanf ("%f", &r);
+
+     if (r=r){
+
+     hasil = (22*r*r/7);
+     printf("\n====================================\n");
+     printf ("\nLuas Lingkaran adalah %.2f cm\n", hasil);
+     printf("\n====================================\n");
+     }
+    }
+
+    else {printf("\n error !!! Silahkan masukan pilihan yang tepat\n\n"); luas();}
+}
+
+void volume() //Dikerjakan oleh I MADE ANANDA MAHAPUTRA (2005551101)
+{
+//variable "hasil" => menyimpan hasil perhitungan rumus
+//variable p =======> panjang
+//variable l =======> lebar
+//variable t =======> tinggi
+//variable r =======> jari - jari
+//variable a,x =====> menentukan pilihan user
+
+    printf ("Menghitung Volume Suatu Ruang : \n");
+    printf ("(1) Kubus  \n");
+    printf ("(2) Balok \n");
+    printf ("(3) Limas/Krucut  \n");
+    printf ("(4) Prisma \n");
+    printf ("(5) Bola \n");
+    printf ("(6) KELUAR \n");
+    printf ("MASUKAN KODE  : ");
+    scanf ("%f", &a);
+    printf("\n=================================================\n\n");
+
+     if (a==1){
+     printf ("\nMenghitung Volume Kubus\n");
+     printf ("Panjang rusuk(cm) : ");
+     scanf ("%f", &p);
+
+     hasil = (p*p*p);
+     printf("\n=========================\n");
+     printf ("\nVolume Kubus %.2f cm\n", hasil);
+     printf("\n=========================\n");
+    }
+    else if (a==2){
+     printf ("\nMenghitung Volume Balok\n");
+     printf ("Panjang rusuk(cm): ");
+     scanf ("%f", &p);
+     printf ("\nLebar rusuk(cm)  : ");
+     scanf (" %f", &l);
+     printf ("\nTinggi rusuk(cm) : ");
+     scanf (" %f", &t);
+
+     hasil = (p*l*t);
+     printf("\n===============================\n");
+     printf ("\nVolume Balok adalah %.2f cm\n", hasil);
+     printf("\n===============================\n");
+    }
+    else if (a==3){
+     printf ("(1) Limas segitiga  \n");
+     printf ("(2) Limas Segiempat \n");
+     printf ("(3) krucut \n");
+     printf ("Tentukan Bentuk Limas : \n");
+     scanf (" %i", &x);
+       if (x==1){
+       printf ("\nMenghitung Volume Limas segitiga \n");
+       printf ("\nLebar alas(cm)  : ");
+       scanf (" %f", &l);
+       printf ("\npanjang alas(cm) : ");
+       scanf (" %f", &p);
+       printf ("tinggi limas(cm) : ");
+       scanf (" %f", &t);
+       hasil = (p*l*t)/3;
+       printf("\n=====================================\n");
+       printf ("\nVolume Limas segitiga adalah %.2f cm\n", hasil);
+       printf("\n=====================================\n");
+      }
+      else if (x==2){
+       printf ("\nMenghitung Volume Limas segiempat \n");
+       printf ("\nLebar alas(cm)  : ");
+       scanf (" %f", &l);
+       printf ("\npanjang alas(cm) : ");
+       scanf (" %f", &p);
+       printf ("tinggi limas(cm) : ");
+       scanf (" %f", &t);
+       hasil = (p*l*t)/(3*2);
+       printf("\n=====================================\n");
+       printf ("\nVolume Limas segitiga adalah %.2f cm\n", hasil);
+       printf("\n=====================================\n");
+      }
+      else if (x==4){
+       printf ("\nMenghitung Volume Prisma \n");
+       printf ("\nPanjang Alas(cm)   : ");
+       scanf (" %f", &p);
+       printf ("\nTinggi Alas(cm)    : ");
+       scanf (" %f", &l);
+       printf ("\nTinggi Prisma (cm) : ");
+       scanf (" %f", &t);
+       hasil = (p*l*t)/2;
+       printf("\n=============================\n");
+       printf ("\nVolume Prisma adalah %.2f cm\n", hasil);
+       printf("\n=============================\n");
+      }
+
+      else if (a==4){
+     printf ("\nMenghitung Volume Balok\n");
+     printf ("Panjang rusuk(cm): ");
+     scanf ("%f", &p);
+     printf ("\nLebar rusuk(cm)  : ");
+     scanf (" %f", &l);
+     printf ("\nTinggi rusuk(cm) : ");
+     scanf (" %f", &t);
+
+     hasil = (p*l*t);
+     printf("\n============================\n");
+     printf ("\nVolume Balok adalah %.2f cm\n", hasil);
+     printf("\n============================\n");
+    }
+      else {printf("error !!!\n\n");}
+    }
+    else if (a==4){
+     printf ("\nMenghitung Volume Prisma\n");
+     printf ("Panjang Alas(cm)    : ");
+     scanf ("%f", &p);
+     printf ("Tinggi Alas(cm)     : ");
+     scanf (" %f", &l);
+     printf ("Tinggi Prisma(cm)   : ");
+     scanf (" %f", &t);
+
+     hasil = (p*l*t)/2;
+     printf("\n=============================\n");
+     printf ("\nVolume Prisma adalah %.2f cm\n", hasil);
+     printf("\n=============================\n");
+ }
+    else if (a==5){
+     printf ("\nMenghitung Volume Bola\n");
+     printf ("Panjang jari - jari(cm)   : ");
+     scanf ("%f", &r);
+
+     if (r=r){
+
+     hasil = (4*22*r*r*r/(7*3));
+     printf("\n===========================\n");
+     printf ("\nVolume Bola adalah %.2f cm\n", hasil);
+     printf("\n===========================\n");
+     }
+    }
+    else if (a==6){
+         printf("Terima Kasih :)");
+    }
+
+    else {printf("error !!!\n\n");}
+}
+
+void deret() //Dikerjakan oleh I MADE ANANDA MAHAPUTRA (2005551101)
+{
+//variable hasil3 => besar angka ke-n
+//variable hasil4 => jumlah total angka sampai ke-n
+//variable x ======> angka terkecil suatu deret
+//variable y ======> angka terbesar suatu deret
+//variable z ======> beda suku suatu deret
+//variable x ======> menentukan pilihan penguna
+
+    printf("Pilih Deret\n");
+    printf("(1) Deret Arimatika\n");
+    printf("(2) Deret Geometri\n");
+    printf("(3) KELUAR \n");
+    printf("MASUKAN KODE : ");
+    scanf ("%i", &x);
+
+    if (x==1){
+       printf("Menghitung Deret Arimatika\n\n");
+       printf("Masukan batas bawah  (a) : ");
+       scanf ("%i", &x);
+       printf("Masukan batas atas (f(n)): ");
+       scanf (" %i", &y);
+       printf("Masukan beda suku    (b) : ");
+       scanf (" %i", &z);
+
+       if(x<=y){
+         for (x=x;x<=y;x+=z){
+            printf ("%i\n", x);
+            hasil3 += x;
+            hasil4 ++;
+
+            }
+        if (x>0){
+          printf ("\n jumlah (Sn)   = %i\n",hasil3);
+          printf (" Banyaknya(Un) = %i\n", hasil4);
+         }
+        }
+    }
+    else if (x==2){
+       printf("Menghitung Deret Geometri\n\n");
+       printf("Masukan batas bawah (a) : ");
+       scanf ("%i", &x);
+       printf("Masukan batas atas  (n): ");
+       scanf (" %i", &y);
+       printf("Masukan beda suku   (r) : ");
+       scanf (" %i", &z);
+
+       if(x<=y){
+         for (x=x;x<=y;x*=z){
+            printf ("%i\n", x);
+            hasil3 += x;
+            hasil4 ++;
+
+            }
+        if (x>0){
+          printf ("\n jumlah    (Sn) = %i\n",hasil3);
+          printf (" Banyaknya (Un) = %i\n", hasil4);
+         }
+        }
+    }
+    else if (x==3){
+         printf("Terima Kasih :)");
+    }
+    else ("\n\nERROR!!!\n\n");
+}
+
+void luaspermukaanruang() //Dikerjakan oleh Matthew Anthony Gede Dharma Saputra (2005551143)
+{
+float luaspermukaan;//------------=> untuk menyimpan nilai nilai dari perhitungan rumus
+                    // variable p => panjang suatu bangun ruang
+                    // variable l => lebar suatu bangun ruang
+                    // variable t => tinggi bangun ruang
+                    // variable u => tinggi alas
+                    // variable s => rusuk bangun ruang
+                    // variable r => jari - jari bangun ruang
+printf("=====================================================\n");
+printf("|   Program Menghitung Luas Permukaan Bangun Ruang  |\n");
+printf("=====================================================\n");
+printf("| 1. Hitung Luas Permukaan Balok                    |\n");
+printf("| 2. Hitung Luas Permukaan Limas Segitiga Sama Sisi |\n");
+printf("| 3. Hitung Luas Permukaan Prisma Segitiga          |\n");
+printf("| 4. Hitung Luas Permukaan Kubus                    |\n");
+printf("| 5. Hitung Luas Permukaan Bola                     |\n");
+printf("| 6. Keluar                                         |\n");
+printf("=====================================================\n");
+printf("Pilihan Anda : ");
+scanf("%d", &pilih);
+switch(pilih)
+{
+case 1 :
+printf("\n");
+printf("=====================================================\n");
+printf("|            Hitung Luas Permukaan Balok            |\n");
+printf("=====================================================\n");
+printf("Input Panjang (cm) : ");
+scanf("%f",&p);
+printf("Input Tinggi (cm) : ");
+scanf("%f",&t);
+printf("Input Lebar (cm) : ");
+scanf("%f",&l);
+luaspermukaan=(2*(p*l))+(2*(p*t))+(2*(l*t));
+printf("2(Panjang x Lebar) + 2(Panjang x Tinggi) + 2(Lebar x Tinggi) \n");
+printf("Luas Permukaan Balok : %.2f cm \n",luaspermukaan);
+break;
+
+case 2 :
+printf("\n");
+printf("=====================================================\n");
+printf("|   Hitung Luas Permukaan Limas Segitiga Sama Sisi  |\n");
+printf("=====================================================\n");
+printf("Input Alas Segitiga Alas (cm) : ");
+scanf("%f",&a);
+printf("Input Tinggi Segitiga Alas (cm) : ");
+scanf("%f",&u);
+printf("Input Tinggi Limas (cm) : ");
+scanf("%f",&t);
+luaspermukaan =((a*u)/2)*t*3/2;
+printf("3/2 Alas x Tinggi \n");
+printf("Luas Permukaan Limas Segitiga Sama Sisi : %.2f cm \n",luaspermukaan);
+break;
+
+case 3 :
+printf("\n");
+printf("=====================================================\n");
+printf("|       Hitung Luas Permukaan Prisma Segitiga       |\n");
+printf("=====================================================\n");
+printf("Input Alas Segitiga Alas (cm) : ");
+scanf("%f",&a);
+printf("Input Tinggi Segitiga Alas (cm) : ");
+scanf("%f",&u);
+printf("Input Tinggi Prisma (cm) : ");
+scanf("%f",&t);
+luaspermukaan =((a*u)/2)*t;
+printf("Luas Alas x Tinggi \n");
+printf("Luas Permukaan Prisma Segitiga : %.2f cm \n", luaspermukaan);
+break;
+
+case 4 :
+printf("\n");
+printf("=====================================================\n");
+printf("|             Hitung Luas Permukaan Kubus           |\n");
+printf("=====================================================\n");
+printf("Input Sisi Kubus (cm) : ");
+scanf("%f",&s);
+luaspermukaan =6*s*s;
+printf("6 x Sisi x Sisi \n");
+printf("Luas Permukaan Kubus: %.2f cm \n", luaspermukaan);
+break;
+
+case 5 :
+printf("\n");
+printf("=====================================================\n");
+printf("|              Hitung Luas Permukaan Bola           |\n");
+printf("=====================================================\n");
+printf(" Input Jari-Jari (cm) : ");
+scanf("%f",&r);
+luaspermukaan =(4*22*(r*r))/7;
+printf("4 x Phi x (Jari-Jari x Jari-Jari) \n");
+printf(" Luas Permukaan Bola : %.2f cm \n",luaspermukaan);
+break;
+
+case 6 :
+break;
+
+default : printf("Pilihan Anda Salah!\n");
+}
+}
+
+void perhitunganpeta() //Dikerjakan oleh I Gede Adhi Heryawan Kartika Utama (2005551111)
+{
+float jarakpeta, jaraksebenarnya,skala;
+//variable "jarakpeta" =======> menyimpan nilai jarak pada peta yang dimasukan user
+//variable "jaraksebenarnya" => menyimpan nilai jarak sebenarnya yang dimasukan user
+//variable "sekala" ==========> meyimpan perbandingan sekala yang dimasukan user
+ulangi:
+printf ("(1) Menghitung Jarak Pada Peta\n");
+printf ("(2) Menghitung Jarak Sebenarnya\n");
+printf ("(3) Menghitung Sekala Peta\n");
+printf ("MASUKAN PILIHAN ANGKA DIATAS: ");
+scanf("%i", &x);
+switch(x)
+ {
+ case 1:
+  printf("Masukkan jarak pada peta = ");
+  scanf("%f", &jarakpeta);
+  printf("Masukkan skala = 1 : ");
+  scanf("%f", &skala);
+  jaraksebenarnya =  jarakpeta * skala;
+  printf("Maka jarak sebenarnya adalah %.f", jaraksebenarnya);
+  break;
+ case 2:
+  printf("Masukkan jarak sebenarnya = ");
+  scanf("%f", &jaraksebenarnya);
+  printf("Masukkan skala = 1 : ");
+  scanf("%f", &skala);
+  jarakpeta =  jaraksebenarnya / skala;
+  printf("Maka jarak pada peta adalah  %.f", jarakpeta);
+  break;
+ case 3:
+  printf("Masukkan jarak pada peta  = ");
+  scanf("%f", &jarakpeta);
+  printf("Masukkan jarak sebenarnya = ");
+  scanf("%f", &jaraksebenarnya);
+  skala =  jaraksebenarnya / jarakpeta;
+  printf("Maka skalanya adalah 1 : %.f", skala);
+  break;
+  default: printf("Pilihan Anda Salah! Silahkan Masukan Angka Yang Tertera diatas\n\n");
+           goto ulangi;
+ }
+
+}
+
+void tigaM() //Dikerjakan oleh Matthew Anthony Gede Dharma Saputra (2005551143)
+{
+//variable "pilih" ====> Untuk menentukan pilihan pengguna
+//variable N ==========> Untuk menginput panjang array
+//variable i ==========> Untuk proses looping
+//variable "data[]" ===> Untuk menyimpan data array
+//variable "median" ===> Untuk menyimpan nilai dari perhitungan median
+//variable "mean" =====> Untuk menyimpan nilai dari perhitungan mean
+//variable "modus" ====> Untuk menyimpan nilai dari perhitungan modus
+//variabble "sum" =====> Untuk menyimpan total jumlah nilai dari suatu array
+//variable
+
+printf("=====================================================\n");
+printf("|      Program mencari median, mean, dan modus      |\n");
+printf("=====================================================\n");
+printf("| 1. Mencari Median                                 |\n");
+printf("| 2. Mencari Mean                                   |\n");
+printf("| 3. Mencari Modus                                  |\n");
+printf("| 4. Keluar                                         |\n");
+printf("=====================================================\n");
+printf("Pilihan Anda : ");
+scanf("%d", &pilih);
+switch(pilih)
+ {
+ case 1 :
+    //input jumlah data
+    printf("masukkan jumlah data: "); scanf("%d",&N);fflush(stdin);
+
+    for(i=0;i<N;i++){
+                     printf("masukkan data ke-%d <0..9>: ",i+1);
+                     scanf(" %d",&data[i]);
+                    }
+    for(i=0;i<(N-1);i++){
+                         for(j=i;j<N;j++){
+                         if(data[j]<data[i]){
+                                               temp=data[i];
+                                               data[i]=data[j];
+                                               data[j]=temp; };
+                                               };
+                                               }
+    printf("\ndata setelah diurutkan: \n");
+    for(i=0;i<N;i++){
+                     printf("%d\n",data[i]);}
+                     printf("\n\n");
+    if(N%2==1){q2=(N/2);
+                        median=data[q2];
+                        printf("\nmedian adalah: %.2f",median);}
+    else if(N%2==0){q1=(N/2)-1; q2=(N/2);
+                    median=((float)data[q1]+(float)data[q2])/2;
+                    printf("\nmedian adalah: %.2f",median);}
+
+    printf("\n");
+    break;
+ case 2 :
+    //input jumlah data
+    printf("masukkan jumlah data: "); scanf("%d",&N);fflush(stdin);
+
+    for(i=0;i<N;i++){
+                     printf("masukkan data ke-%d <0..9>: ",i+1);scanf("%d",&data[i]);
+                     sum=sum+data[i];
+                     }
+
+    printf("\n\n");
+    printf("\ndata setelah diurutkan: ");
+    mean=(float)sum/N;
+    printf("mean adalah: %.2f\n",mean);
+    break;
+ case 3 :
+     //input jumlah data
+    printf("masukkan jumlah data: "); scanf("%d",&N);fflush(stdin);
+
+    for(i=0;i<N;i++){
+                     printf("masukkan data ke-%d <0..9>: ",i+1);scanf("%d",&data[i]);
+                     }
+
+    printf("\n\n");
+    printf("\ndata setelah diurutkan: ");
+    for(i=0;i<N;i++)
+    {
+     printf("%d ", data[i]);
+    }
+
+    for(i=0;i<10;i++){frekuensi[i]=0;
+                      for(j=0;j<N;j++){
+                                       if(data[j]==i){frekuensi[i]=frekuensi[i]+1;};
+                                      }
+                      if(frekuensi[i]>max) {max=frekuensi[i];modus=i;}
+                      };
+                          printf("modusnya adalah: %d\n\n",modus);
+ break;
+ case 4 :
+     printf("Terimakasih \n");
+     break;
+ default : printf("Pilihan Anda Salah!\n");
+}
+}
+
+void konversi() //Dikerjakan oleh I Gede Adhi Heryawan Kartika Utama (2005551111)
+{
+//variable km, hm. dam, m, dm, cm, m => Nilai Satuan Pangjang
+//variable "pilih" ===================> Menentukan pilihan dari user satuan yang mana ingin dihitung
+//variable "ulang" ===================> Menentukan pilihan untuk mengulah ataukah tidak mengulang program
+
+    system("cls") ;
+    printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n") ;
+    printf("\t  PROGRAM KONVERSI SATUAN PANJANG\n");
+    printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n") ;
+    printf("1. Kilometer   (km)\n") ;
+    printf("2. Hektometer  (hm)\n") ;
+    printf("3. Dekameter   (dam)\n") ;
+    printf("4. Meter       (m)\n")  ;
+    printf("5. Desimeter   (dm)\n") ;
+    printf("6. Centimeter  (cm)\n") ;
+    printf("7. Milimeter   (mm)\n") ;
+    printf("8. Keluar \n") ;
+    printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n") ;
+    printf("Konversi dari : ") ;
+    scanf("%d",&pilih) ;
+
+    if (pilih==1) {
+    kilometer:
+    system("cls") ;
+    printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n") ;
+    printf("\t  PROGRAM KONVERSI SATUAN PANJANG\n") ;
+    printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n") ;
+    printf("Masukkan panjang (kilometer) : ") ;
+    scanf("%f",&km) ;
+    printf("\nHasil :\n") ;
+    printf("%0.1f km dalam satuan hektometer (hm) : %.1f hm \n",km,km*10) ;
+    printf("%0.1f km dalam satuan dekameter (dam) : %.1f dam \n",km,km*100) ;
+    printf("%0.1f km dalam satuan meter       (m) : %.1f m \n",km,km*1000) ;
+    printf("%0.1f km dalam satuan desimeter  (dm) : %.1f dm \n",km,km*10000) ;
+    printf("%0.1f km dalam satuan centimeter (cm) : %.1f cm \n",km,km*100000) ;
+    printf("%0.1f km dalam satuan milimeter  (mm) : %.1f mm \n",km,km*1000000) ;
+    printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n") ;
+    printf("R : Ulangi program ini \n") ;
+    printf("M : Kembali ke menu utama \n") ;
+    printf("Q : Keluar \n") ;
+    printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n") ;
+    printf("Pilih : ") ;
+    scanf("%s",&ulang) ;
+        if (ulang=='R' ||ulang=='r') {
+            goto kilometer;
+        }
+        else if (ulang=='M' ||ulang=='m') {
+            return konversi() ;
+        }
+        else if (ulang=='Q' ||ulang=='q') {
+            printf("Terima Kasih");
+        }
+        else {
+            printf("ERROR!!! \n") ;
+        }
+    }
+
+    else if (pilih==2) {
+    system ("cls") ;
+    hektometer:
+    printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n") ;
+    printf("\t  PROGRAM KONVERSI PANJANG\n") ;
+    printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n") ;
+    printf("Masukkan panjang (hektometer) : ") ;
+    scanf("%f",&hm) ;
+    printf("\nHasil :\n") ;
+    printf("%0.1f hm dalam satuan kilometer  (km) : %0.1f km \n",hm,hm/10) ;
+    printf("%0.1f hm dalam satuan dekameter (dam) : %0.1f dam \n",hm,hm*10) ;
+    printf("%0.1f hm dalam satuan meter       (m) : %0.1f m \n",hm,hm*100) ;
+    printf("%0.1f hm dalam satuan desimeter  (dm) : %0.1f dm \n",hm,hm*1000) ;
+    printf("%0.1f hm dalam satuan centimeter (cm) : %0.1f cm \n",hm,hm*10000) ;
+    printf("%0.1f hm dalam satuan milimeter  (mm) : %0.1f mm \n",hm,hm*100000) ;
+    printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n") ;
+    printf(" 'R' : Ulangi program ini \n") ;
+    printf(" 'M' : Kembali ke menu utama \n") ;
+    printf(" 'Q' : Keluar \n") ;
+    printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n") ;
+    printf("Pilih : ") ;
+    scanf("%s",&ulang) ;
+        if (ulang=='R'||ulang=='r') {
+            goto hektometer;
+        }
+        else if (ulang=='M'||ulang=='m') {
+            return konversi() ;
+        }
+        else if (ulang=='Q'||ulang=='q') {
+            printf("Terima Kasih");
+        }
+        else {
+            printf("ERROR!!! \n" ) ;
+        }
+    }
+
+    else if (pilih==3) {
+    system("cls") ;
+    dekameter:
+    printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n") ;
+    printf("\t  PROGRAM KONVERSI SATUAN PANJANG\n") ;
+    printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n") ;
+    printf("Masukkan panjang (dekameter) : ") ;
+    scanf("%f",&dam) ;
+    printf("\nHasil :\n") ;
+    printf("%0.1f dam dalam satuan kilometer  (km) : %.2f km\n",dam,dam/100) ;
+    printf("%0.1f dam dalam satuan hektometer (hm) : %.1f hm \n",dam,dam/10) ;
+    printf("%0.1f dam dalam satuan meter       (m) : %.1f m \n",dam,dam*10) ;
+    printf("%0.1f dam dalam satuan desimeter  (dm) : %.1f dm \n",dam,dam*100) ;
+    printf("%0.1f dam dalam satuan centimeter (cm) : %.1f cm \n",dam,dam*1000) ;
+    printf("%0.1f dam dalam satuan milimeter  (mm) : %.1f mm \n",dam,dam*10000) ;
+    printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n") ;
+    printf("R : Ulangi program ini \n") ;
+    printf("M : Kembali ke menu utama \n") ;
+    printf("Q : Keluar \n") ;
+    printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n") ;
+    printf("Pilih : ") ;
+    scanf("%s",&ulang);
+        if (ulang=='R'||ulang=='r') {
+         goto dekameter ;
+        }
+        else if (ulang=='M'||ulang=='m') {
+            return konversi () ;
+        }
+        else if (ulang=='Q'||ulang=='q') {
+            return 0;
+        }
+        else {
+            printf ("ERROR!!! \n") ;
+          }
+        }
+
+    else if (pilih==4) {
+    system("cls") ;
+    meter:
+    printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n") ;
+    printf("\t  PROGRAM KONVERSI SATUAN PANJANG\n") ;
+    printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n") ;
+    printf("Masukkan pamjang (meter) : ") ;
+    scanf (" %f", &m);
+    printf("%0.1f m dalam satuan kilometer  (km) : %.3f m \n",m,m/1000) ;
+    printf("%0.1f m dalam satuan hektometer (hm) : %.2f hm \n",m,m/100) ;
+    printf("%0.1f m dalam satuan dekameter  (dam): %.1f dam \n",m,m/10) ;
+    printf("%0.1f m dalam satuan desimeter  (dm) : %.1f dm \n",m,m*10) ;
+    printf("%0.1f m dalam satuan centimeter (cm) : %.1f cm \n",m,m*100) ;
+    printf("%0.1f m dalam satuan milimeter  (mm) : %.1f mm \n",m,m*1000) ;
+    printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n") ;
+    printf("R : Ulang program ini \n") ;
+    printf("M : Kembali ke menu utama \n") ;
+    printf("Q : Keluar \n") ;
+    printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n") ;
+    printf("Pilih : ") ;
+    scanf("%s",&ulang) ;
+        if (ulang=='R'||ulang=='r') {
+            goto meter ;
+        }
+        else if (ulang=='M'||ulang=='m') {
+            return konversi () ;
+        }
+        else if (ulang=='Q'||ulang=='q') {
+            return 0 ;
+        }
+        else {
+            printf("ERROR!!! \n") ;
+        }
+    }
+
+    else if (pilih==5) {
+    system("cls") ;
+    desimeter:
+    printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n") ;
+    printf("\t  PROGRAM KONVERSI SATUAN PANJANG\n") ;
+    printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n") ;
+    printf("Masukkan pamjang (desimeter) : ") ;
+    scanf("%f",&dm);
+    printf("%0.1f dm dalam satuan kilometer  (km) : %.4f km \n",dm,dm/10000) ;
+    printf("%0.1f dm dalam satuan hektometer (hm) : %.3f hm \n",dm,dm/1000) ;
+    printf("%0.1f dm dalam satuan dekameter  (dam): %.2f dam \n",dm,dm/100) ;
+    printf("%0.1f dm dalam satuan meter      (m)  : %.1f m \n",dm,dm/10) ;
+    printf("%0.1f dm dalam satuan centimeter (cm) : %.1f cm \n",dm,dm*10) ;
+    printf("%0.1f dm dalam satuan milimeter  (mm) : %.1f mm \n",dm,dm*100) ;
+    printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n") ;
+    printf("R : Ulang program ini \n") ;
+    printf("M : Kembali ke menu utama \n") ;
+    printf("Q : Keluar \n") ;
+    printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n") ;
+    printf("Pilih : ") ;
+    scanf("%s",&ulang) ;
+        if (ulang=='R'||ulang=='r') {
+            goto desimeter;
+        }
+        else if (ulang=='M'||ulang=='m') {
+            return konversi () ;
+        }
+        else if (ulang=='Q'||ulang=='q') {
+            return 0 ;
+        }
+        else {
+            printf("ERROR!!! \n") ;
+        }
+    }
+
+    else if (pilih==6) {
+    system("cls") ;
+    centimeter:
+    printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n") ;
+    printf("\t  PROGRAM KONVERSI SATUAN PANJANG\n") ;
+    printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n") ;
+    printf("Masukkan pamjang (centimeter) : ") ;
+    scanf ("%f", &cm);
+    printf("%0.1f cm dalam satuan kilometer  (km) : %.5f km \n",cm,cm/100000) ;
+    printf("%0.1f cm dalam satuan hektometer (hm) : %.4f hm \n",cm,cm/10000) ;
+    printf("%0.1f cm dalam satuan dekameter  (dam): %.3f dam \n",cm,cm/1000) ;
+    printf("%0.1f cm dalam satuan meter      (m)  : %.2f m \n",cm,cm/100) ;
+    printf("%0.1f cm dalam satuan desimeter  (dm) : %.1f dm \n",cm,cm/10) ;
+    printf("%0.1f cm dalam satuan milimeter  (mm) : %.1f mm \n",cm,cm*10) ;
+    printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n") ;
+    printf("R : Ulang program ini \n") ;
+    printf("M : Kembali ke menu utama \n") ;
+    printf("Q : Keluar \n") ;
+    printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n") ;
+    printf("Pilih : ") ;
+    scanf("%s",&ulang) ;
+        if (ulang=='R'||ulang=='r') {
+            goto centimeter;
+        }
+        else if (ulang=='M'||ulang=='m') {
+            return konversi () ;
+        }
+        else if (ulang=='Q'||ulang=='q') {
+            return 0 ;
+        }
+        else {
+            printf("ERROR!!! \n") ;
+        }
+    }
+
+    else if (pilih==7) {
+    system("cls") ;
+    milimeter:
+    printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n") ;
+    printf("\t  PROGRAM KONVERSI SATUAN PANJANG\n") ;
+    printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n") ;
+    printf("Masukkan pamjang (milimeter) : ") ;
+    scanf ("%f", &mm);
+    printf("%0.1f mm dalam satuan kilometer  (km) : %.6f km \n",mm,mm/1000000) ;
+    printf("%0.1f mm dalam satuan hektometer (hm) : %.5f hm \n",mm,mm/100000) ;
+    printf("%0.1f mm dalam satuan dekameter  (dam): %.4f dam \n",mm,mm/10000) ;
+    printf("%0.1f mm dalam satuan meter      (m)  : %.3f m \n",mm,mm/1000) ;
+    printf("%0.1f mm dalam satuan desimeter  (dm) : %.2f dm \n",mm,mm/100) ;
+    printf("%0.1f mm dalam satuan centimeter (cm) : %.1f cm \n",mm,mm/10) ;
+    printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n") ;
+    printf("R : Ulang program ini \n") ;
+    printf("M : Kembali ke menu utama \n") ;
+    printf("Q : Keluar \n") ;
+    printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n") ;
+    printf("Pilih : ") ;
+    scanf("%s",&ulang) ;
+        if (ulang=='R'||ulang=='r') {
+            goto milimeter;
+        }
+        else if (ulang=='M'||ulang=='m') {
+            return konversi () ;
+        }
+        else if (ulang=='Q'||ulang=='q') {
+            return 0 ;
+        }
+        else {
+            printf("ERROR!!! \n") ;
+        }
+    }
+
+    else if (pilih==8) {
+             printf ("Terima Kasih");
+
+    }
+    else {
+             printf("\nERROR, Masukan pilihan yang tersedia! \n\n");
+             return konversi ();
+    }
+}
+
+void himpunan() //Dikerjakan oleh I MADE ANANDA MAHAPUTRA (2005551101)
+{
+//variable "pilih" =============> menentukan pilihn user
+//variable 'M' =================> input panjang Himpunan A
+//variable 'N' =================> input panjang Himpunan B
+//variable 'i' =================> looping Himpunan A
+//variable 'j' =================> looping Himpunan B
+//variable "Himpunan1" =========> menyimpan nilai Himpunan A
+//variable "Himpunan2" =========> menyimpan nilai Himpunan B
+//variable "himpunanGabungan" ==> menyimpan nilai dari Gabungan Himpunan A & B (AuB)
+//variable "himpunanIrisn" =====> menyimpan nilai dari Irisn Himpunan A & B (AnB)
+//variable "himpunanSelisih" ===> menyimpan nilai dari Silisih Himpunan A & B (A-B)
+//variable "himpunanKomplemen" => menyimpan nilai dari Komplemen Himpunan A & B (AuB)^t
+
+printf ("-----------------------\n");
+printf ("| Menghitung Himpunan |\n");
+printf ("-----------------------\n");
+printf ("(1) Gabungan (AuB) \n");
+printf ("(2) Irisan (AnB) \n");
+printf ("(3) Selisih (A-B) \n");
+printf ("(4) Komplemen (AuB)^t \n");
+printf("Masukan pilihan: ");
+scanf (" %i", &pilih);
+switch(pilih){
+
+case 1:
+printf ("Silahkan isi Data Himpunan A\n");
+printf ("Banyak Data (angka):");
+scanf("%i", &M); //INPUT A
+for(i=0;i<M;i++){
+   printf("Angka ke-%i: ", i+1);
+   scanf (" %i", &himpunan1[i]);
+}
+printf ("--------\nbaris = {");
+tampilkan(himpunan1, M); //Menampilan A
+printf ("}\n--------\n");
+//n=0;
+printf ("\nSilahkan isi Data Himpunan B\n");
+printf ("Banyak Data (angka):");
+scanf("%i", &N); //INPUT B
+for(i=0;i<N;i++){
+   printf("Angka ke-%i: ", i+1);
+   scanf (" %i", &himpunan2[i]);
+  }
+printf ("--------\nbaris = {");
+tampilkan(himpunan2,  N); //Menampilkan B
+printf ("}\n-------\n");
+//RUMUS
+for(i=0;i<M;i++){
+    himpunanGabungan[i]=himpunan1[i];
+}
+
+for(j=0;j<N;j++){
+    penanda=0;
+    for(i=0;i<M;i++){
+        if (himpunan2[j]== himpunan1[i]){
+           penanda=1;
+        }
+    }
+    if (penanda==0){
+        himpunanGabungan[M]=himpunan2[j];
+        M++;
+    }
+}
+
+printf("\nGabungan dari kedua Himpunan tersebut: \n{");
+printf ("%i", himpunanGabungan[0]);
+for (i=1;i<M;i++){
+    printf (", %i", himpunanGabungan[i]);
+}
+printf("}");
+break;
+
+case 2:
+printf ("Silahkan isi Data Himpunan A\n");
+printf ("Banyak Data (angka):");
+scanf("%i", &M);
+for(i=0;i<M;i++){
+   printf("Angka ke-%i: ", i+1);
+   scanf (" %i", &himpunan1[i]);
+}
+printf ("--------\nbaris = {");
+tampilkan(himpunan1, M);
+printf ("}\n--------\n");
+//n=0;
+printf ("\nSilahkan isi Data Himpunan B\n");
+printf ("Banyak Data (angka):");
+scanf("%i", &N);
+for(i=0;i<N;i++){
+   printf("Angka ke-%i: ", i+1);
+   scanf (" %i", &himpunan2[i]);
+  }
+printf ("--------\nbaris = {");
+tampilkan(himpunan2, N);
+printf ("}\n-------\n");
+
+q = 0;
+for (i=0;i<M;i++)
+    {
+    for (j=0;j<N;j++)
+        {
+        if (himpunan1[i]==himpunan2[j])
+            {
+            himpunanIrisan[q]=himpunan2[j];
+            q++;
+            }
+        }
+    }
+printf("\nIrisan dari kedua Himpunan tersebut: \n{");
+printf("%i", himpunanIrisan[0]);
+for (i=1;i<q;i++){
+  printf(", %i", himpunanIrisan[i]);
+}
+printf("}\n\n");
+break;
+
+case 3:
+printf ("Silahkan isi Data Himpunan A\n");
+printf ("Banyak Data (angka):");
+scanf("%i", &M); //INPUT A
+for(i=0;i<M;i++){
+   printf("Angka ke-%i: ", i+1);
+   scanf (" %i", &himpunan1[i]);
+}
+printf ("--------\nbaris = {");
+tampilkan(himpunan1, M); //Menampilan A
+printf ("}\n--------\n");
+//n=0;
+printf ("\nSilahkan isi Data Himpunan B\n");
+printf ("Banyak Data (angka):");
+scanf("%i", &N); //INPUT B
+for(i=0;i<N;i++){
+   printf("Angka ke-%i: ", i+1);
+   scanf (" %i", &himpunan2[i]);
+  }
+printf ("--------\nbaris = {");
+tampilkan(himpunan2,  N); //Menampilkan B
+printf ("}\n-------\n");
+//RUMUS
+q=0;
+for(i=0;i<M;i++){
+    penanda=0;
+    for(j=0;j<N;j++){
+        if(himpunan1[i]==himpunan2[j]){
+            penanda=1;
+        }
+    }
+    if (penanda==0){
+        himpunanSelisih[q]=himpunan1[i];
+        q++;
+    }
+}
+
+printf("{%i", himpunanSelisih[0]);
+for (i=1;i<q;i++){
+    printf(", %i", himpunanSelisih[i]);
+}
+printf("}");
+break;
+
+case 4:
+printf ("Silahkan isi Data Himpunan A\n");
+printf ("Banyak Data (angka):");
+scanf("%i", &M); //INPUT A
+for(i=0;i<M;i++){
+   printf("Angka ke-%i: ", i+1);
+   scanf (" %i", &himpunan1[i]);
+}
+printf ("--------\nbaris = {");
+tampilkan(himpunan1, M); //Menampilan A
+printf ("}\n--------\n");
+//n=0;
+printf ("\nSilahkan isi Data Himpunan B\n");
+printf ("Banyak Data (angka):");
+scanf("%i", &N); //INPUT B
+for(i=0;i<N;i++){
+   printf("Angka ke-%i: ", i+1);
+   scanf (" %i", &himpunan2[i]);
+  }
+printf ("--------\nbaris = {");
+tampilkan(himpunan2,  N); //Menampilkan B
+printf ("}\n-------\n");
+//RUMUS
+q=0;
+for(i=0;i<M;i++){
+    penanda=0;
+    for(j=0;j<N;j++){
+        if(himpunan1[i]==himpunan2[j]){
+            penanda=1;
+        }
+    }
+    if (penanda==0){
+        himpunanKomplemen[q]=himpunan1[i];
+        q++;
+    }
+}
+for(j=0;j<N;j++){
+    penanda=0;
+    for(i=0;i<M;i++){
+        if(himpunan2[j]==himpunan1[i]){
+            penanda=1;
+        }
+    }
+    if (penanda==0){
+        himpunanKomplemen[q]=himpunan2[j];
+        q++;
+    }
+}
+
+printf("{%i", himpunanKomplemen[0]);
+for (i=1;i<q;i++){
+    printf(", %i", himpunanKomplemen[i]);
+}
+printf("}");
+break;
+
+default:
+printf("\n\n ERROR! (mohon masukan pilihan yang benar) \n\n ");
+return himpunan();
+}
+}
+
+void tampilkan(int himpunan[], int n) //Fungsi untuk di Fungsi Himpunan
+{
+if (n==n){
+printf("%i", himpunan [0]);
+   for(i=1;i<n;i++)
+      {
+      printf(", %i", himpunan [i]);
+      }
+   }
+}
+
+void FPC () //Dikerjakan oleh Matthew Anthony Gede Dharma Saputra (2005551143)
+{
+//variable 'N' =====> Bilangan awal disebelum diFaktorilalkan
+//variable 'f' =====> Bilngan akhir setelah diFaktorialkan
+//variable 'n' =====> Banyak seluruh anggota di Kombinasi/Permutasi
+//variable 'r' =====> Banyak anggota yang dibutuhkan di Kombinasi/Permutsi
+//variable "pilih" => menentukan plihan user
+//variable "hasil" => hasil akhir dari perhitungan Kombinasi/Permutasi
+
+do{
+printf("\n======================================================\n");
+printf("| Program Menghitung Faktorial, Kombinasi, Permutasi |\n");
+printf("======================================================\n");
+printf ("(1) Program Menghitung Faktorial\n");
+printf ("(2) Program Menghitung Kombinasi\n");
+printf ("(3) Program Menghitung Permutasi\n");
+printf ("Masukan Pilihan :");
+scanf ("%d", &pilih);
+
+if(pilih==1){
+printf("=====================================================\n");
+printf("|              Program Menghitung Faktorial         |\n");
+printf("=====================================================\n");
+printf("Masukkan suatu bilangan bulat : ");
+scanf("%d",&N);
+if (N<0)
+{
+printf("Bilangan harus positif!");
+}
+else {
+f = faktorial(N);
+printf("\n");
+printf("Nilai %d! adalah : %ld \n\n", N, f);
+}
+}
+
+else if(pilih==2)
+{
+long int hasil;
+int n,r; //tdinya ini fload bisa berubah jadi int
+printf("=====================================================\n");
+printf("|            Program Menghitung Kombinasi           |\n");
+printf("=====================================================\n");
+printf("nCr = n!/r!*(n-r)!\n");
+printf("Masukkan nilai n : ");
+scanf("%d",&n);
+printf("Masukkan nilai r : ");
+scanf("%d",&r);
+if (n<r)
+{
+printf("Nilai n tidak boleh lebih kecil dari r\n");
+} else {
+hasil = faktorial(n)/(faktorial(r) * faktorial(n-r));
+printf("\n");
+printf("%dC%d = %ld \n\n",n,r,hasil);
+}
+}
+
+else if(pilih==3)
+{
+long int hasil;
+int n,r;
+printf("=====================================================\n");
+printf("|            Program Menghitung Permutasi           |\n");
+printf("=====================================================\n");
+printf("nPr = n!/(n-r)!\n");
+printf("Masukkan nilai n : ");
+scanf("%d",&n);
+printf("Masukkan nilai r : ");
+scanf("%d",&r);
+if (n<r)
+{
+printf("Nilai n tidak boleh lebih kecil dari r");
+} else {
+hasil = faktorial(n)/faktorial(n-r);
+printf("\n");
+printf("%dP%d = %ld \n",n,r,hasil);
+}
+}
+printf("Ulangi Perhitungan? ((Y)=YA / (N)=Tidak) : ");
+pilih = (char) pilih;
+scanf(" %c", &pilih);
+}
+while (pilih=='y'||pilih=='Y');
+}
+
+int faktorial(int N) //Fungsi untuk di Fungsi FPC
+{
+long int F;
+if (N<=1)
+{
+return(1);
+} else {
+F = N * faktorial(N-1);
+return(F);
+}
+}
+
+void waktu() //Fungsi untuk Waktu
+{
+    time( & waktuserver);
+    struct tm * waktu = localtime( & waktuserver);
+    printf("Tanggal: %i/%i/%i\n\n", waktu -> tm_mday, waktu -> tm_mon + 1, waktu -> tm_year + 1900);
+}
+
+
+int main() //Dikerjakan oleh I MADE ANANDA MAHAPUTRA (2005551101)
+{
+
+printf("                                      TUGAS PEMROGRAMAN KELOMPOK 9 (TUGAS BESAR)            \n");
+printf("                                               AYO BELAJAR MATEMATIKA                       \n");
+printf("                                           *******************************                  \n\n");
+printf("                                                        OLEH :                              \n");
+printf("          $=========================================================================================================$\n");
+printf("          |   I MADE ANANDA MAHAPUTRA | I Gede Adhi Heryawan Kartika Utama | Matthew Anthony Gede Dharma Saputra    |\n");
+printf("          |         (2005551101)      |             (2005551111)           |              (2005551143)              |\n");
+printf("          $=========================================================================================================$\n\n");
+/*
+FILE * fPointerz;
+fPointerz = fopen(namaFile, "w");
+printf("Nama Pengguna : "); scanf (" %[^\n]s", nama);
+fprintf (fpointerz, "Nama Pengguna : %s", nama);
+*/
+
+  do{
+system("color  02");
+bab:
+printf ("<--------------------BAB--------------------> \n");
+printf ("(1) Perhitungan Luas\n");
+printf ("(2) Perhitungan Volume\n");
+printf ("(3) Perhitungan Deret\n");
+printf ("(4) Perhitungan Luas Permukaan\n");
+printf ("(5) Perhitungan Perhitungan Peta\n");
+printf ("(6) Perhitungan 3M (Median, Mean, Modus)\n");
+printf ("(7) Perhitungan Konversi\n");
+printf ("(8) Perhitungan Himpunan\n");
+printf ("(9) Perhitungan Faktorial, Permutasi, Kombinasi\n");
+printf ("(11)KELUAR PROGRAM\n");
+printf("=================================================");
+printf ("\nSILAHKAN MASUKAN KODE SESUAI PILIHAN DIATAS : ");
+scanf("%i", &x);
+printf("=================================================\n");
+
+ if (x==1){
+    ulangiPilihan:
+    printf("\n*PERHITUNGAN LUAS*\n");
+    printf("(P) Perhitungan Rumus beserta Penjelasan Singkat\n");
+    printf("(T) Soal Latihan\n");
+    printf("(V) Video Materi\n");
+    printf("(K) KELUAR\n");
+    printf("MASUKAN PILIHAN ANDA : ");
+    scanf(" %c", &ptv);
+    if (ptv=='P'||ptv=='p'){
+    ulangiPerhitungan:
+    printf("\n");
+    luas();
+    printf("\n");
+    printf("-----------------------------------------------------\n");
+    printf("Kembali ke Perhitungan Rumus? (Ya (Y) or Tidak (N)) = ");
+    scanf(" %c", &ulang);
+    printf("-----------------------------------------------------\n");
+           if (ulang == 'y' ||ulang == 'Y'){goto ulangiPerhitungan;}
+           else if (ulang == 'n' ||ulang == 'N'){goto ulangiPilihan;}
+           else {printf("\nERROR!!!\n");}
+    }
+    else if (ptv=='T'||ptv=='t'){
+        printf("\n Masih Dalam Proses Pembuatan/n");
+    }
+    else if (ptv=='V'||ptv=='v'){
+        printf("\nAkses Link Berikut ini untuk menonton Video Penjelasan Materi : /n"); //LINK VIDEO YT
+    }
+    else if (ptv=='k'||ptv=='K'){
+       printf ("\n"); goto bab;
+;    }
+    else{
+        printf("\n ERROR!!! (Silahkan Masukan Pilihan Yang Tepat)\n");
+        goto ulangiPilihan;
+    }
+ }
+
+ else if (x==2){
+    ulangiPilihan2:
+    printf("\n*PERHITUNGAN VOLUME*\n");
+    printf("(P) Perhitungan Rumus beserta Penjelasan Singkat\n");
+    printf("(T) Soal Latihan\n");
+    printf("(V) Video Materi\n");
+    printf("(K) KELUAR\n");
+    printf("MASUKAN PILIHAN ANDA : ");
+    scanf(" %c", &ptv);
+    if (ptv=='P'||ptv=='p'){
+    ulangiPerhitungan2:
+    printf("\n");
+    volume();
+    printf("\n");
+    printf("-----------------------------------------------------\n");
+    printf("Kembali ke Perhitungan Rumus? (Ya (Y) or Tidak (N)) = ");
+    scanf(" %c", &ulang);
+    printf("-----------------------------------------------------\n");
+           if (ulang == 'y' ||ulang == 'Y'){goto ulangiPerhitungan2;}
+           else if (ulang == 'n' ||ulang == 'N'){goto ulangiPilihan2;}
+           else {printf("\nERROR!!!\n");}
+    }
+    else if (ptv=='T'||ptv=='t'){
+        printf("\n Masih Dalam Proses Pembuatan/n");
+    }
+    else if (ptv=='V'||ptv=='v'){
+        printf("\nAkses Link Berikut ini untuk menonton Video Penjelasan Materi : /n"); //LINK VIDEO YT
+    }
+    else if (ptv=='k'||ptv=='K'){
+       printf ("\n"); goto bab;
+;    }
+    else{
+        printf("\n ERROR!!! (Silahkan Masukan Pilihan Yang Tepat)\n");
+        goto ulangiPilihan2;
+    }
+ }
+
+ else if (x==3){
+    ulangiPilihan3:
+    printf("\n*PERHITUNGAN DERET*\n");
+    printf("(P) Perhitungan Rumus beserta Penjelasan Singkat\n");
+    printf("(T) Soal Latihan\n");
+    printf("(V) Video Materi\n");
+    printf("(K) KELUAR\n");
+    printf("MASUKAN PILIHAN ANDA : ");
+    scanf(" %c", &ptv);
+    if (ptv=='P'||ptv=='p'){
+    ulangiPerhitungan3:
+    printf("\n");
+    deret();
+    printf("\n");
+    printf("-----------------------------------------------------\n");
+    printf("Kembali ke Perhitungan Rumus? (Ya (Y) or Tidak (N)) = ");
+    scanf(" %c", &ulang);
+    printf("-----------------------------------------------------\n");
+           if (ulang == 'y' ||ulang == 'Y'){goto ulangiPerhitungan3;}
+           else if (ulang == 'n' ||ulang == 'N'){goto ulangiPilihan3;}
+           else {printf("\nERROR!!!\n");}
+    }
+    else if (ptv=='T'||ptv=='t'){
+        printf("\n Masih Dalam Proses Pembuatan/n");
+    }
+    else if (ptv=='V'||ptv=='v'){
+        printf("\nAkses Link Berikut ini untuk menonton Video Penjelasan Materi : /n"); //LINK VIDEO YT
+    }
+    else if (ptv=='k'||ptv=='K'){
+       printf ("\n"); goto bab;
+;    }
+    else{
+        printf("\n ERROR!!! (Silahkan Masukan Pilihan Yang Tepat)\n");
+        goto ulangiPilihan3;
+    }
+ }
+
+ else if (x==4){
+    ulangiPilihan4:
+    printf("\n*PERHITUNGAN LUAS PERMUKAAN*\n");
+    printf("(P) Perhitungan Rumus beserta Penjelasan Singkat\n");
+    printf("(T) Soal Latihan\n");
+    printf("(V) Video Materi\n");
+    printf("(K) KELUAR\n");
+    printf("MASUKAN PILIHAN ANDA : ");
+    scanf(" %c", &ptv);
+    if (ptv=='P'||ptv=='p'){
+    ulangiPerhitungan4:
+    printf("\n");
+    luaspermukaanruang();
+    printf("\n");
+    printf("-----------------------------------------------------\n");
+    printf("Kembali ke Perhitungan Rumus? (Ya (Y) or Tidak (N)) = ");
+    scanf(" %c", &ulang);
+    printf("-----------------------------------------------------\n");
+           if (ulang == 'y' ||ulang == 'Y'){goto ulangiPerhitungan4;}
+           else if (ulang == 'n' ||ulang == 'N'){goto ulangiPilihan4;}
+           else {printf("\nERROR!!!\n");}
+    }
+    else if (ptv=='T'||ptv=='t'){
+        printf("\n Masih Dalam Proses Pembuatan/n");
+    }
+    else if (ptv=='V'||ptv=='v'){
+        printf("\nAkses Link Berikut ini untuk menonton Video Penjelasan Materi : /n"); //LINK VIDEO YT
+    }
+    else if (ptv=='k'||ptv=='K'){
+       printf ("\n"); goto bab;
+;    }
+    else{
+        printf("\n ERROR!!! (Silahkan Masukan Pilihan Yang Tepat)\n");
+        goto ulangiPilihan4;
+    }
+ }
+
+ else if (x==5){
+    ulangiPilihan5:
+    printf("\n*PERHITUNGAN PERHITUNGAN PETA*\n");
+    printf("(P) Perhitungan Rumus beserta Penjelasan Singkat\n");
+    printf("(T) Soal Latihan\n");
+    printf("(V) Video Materi\n");
+    printf("(K) KELUAR\n");
+    printf("MASUKAN PILIHAN ANDA : ");
+    scanf(" %c", &ptv);
+    if (ptv=='P'||ptv=='p'){
+    ulangiPerhitungan5:
+    printf("\n");
+    perhitunganpeta();
+    printf("\n");
+    printf("-----------------------------------------------------\n");
+    printf("Kembali ke Perhitungan Rumus? (Ya (Y) or Tidak (N)) = ");
+    scanf(" %c", &ulang);
+    printf("-----------------------------------------------------\n");
+           if (ulang == 'y' ||ulang == 'Y'){goto ulangiPerhitungan5;}
+           else if (ulang == 'n' ||ulang == 'N'){goto ulangiPilihan5;}
+           else {printf("\nERROR!!!\n");}
+    }
+    else if (ptv=='T'||ptv=='t'){
+        printf("\n Masih Dalam Proses Pembuatan/n");
+    }
+    else if (ptv=='V'||ptv=='v'){
+        printf("\nAkses Link Berikut ini untuk menonton Video Penjelasan Materi : /n"); //LINK VIDEO YT
+    }
+    else if (ptv=='k'||ptv=='K'){
+       printf ("\n"); goto bab;
+;    }
+    else{
+        printf("\n ERROR!!! (Silahkan Masukan Pilihan Yang Tepat)\n");
+        goto ulangiPilihan5;
+    }
+ }
+
+ else if (x==6){
+    ulangiPilihan6:
+    printf("\n*PERHITUNGAN MEAN, MEDIAN, MODUS*\n");
+    printf("(P) Perhitungan Rumus beserta Penjelasan Singkat\n");
+    printf("(T) Soal Latihan\n");
+    printf("(V) Video Materi\n");
+    printf("(K) KELUAR\n");
+    printf("MASUKAN PILIHAN ANDA : ");
+    scanf(" %c", &ptv);
+    if (ptv=='P'||ptv=='p'){
+    ulangiPerhitungan6:
+    printf("\n");
+    tigaM();
+    printf("\n");
+    printf("-----------------------------------------------------\n");
+    printf("Kembali ke Perhitungan Rumus? (Ya (Y) or Tidak (N)) = ");
+    scanf(" %c", &ulang);
+    printf("-----------------------------------------------------\n");
+           if (ulang == 'y' ||ulang == 'Y'){goto ulangiPerhitungan6;}
+           else if (ulang == 'n' ||ulang == 'N'){goto ulangiPilihan6;}
+           else {printf("\nERROR!!!\n");}
+    }
+    else if (ptv=='T'||ptv=='t'){
+        printf("\n Masih Dalam Proses Pembuatan/n");
+    }
+    else if (ptv=='V'||ptv=='v'){
+        printf("\nAkses Link Berikut ini untuk menonton Video Penjelasan Materi : /n"); //LINK VIDEO YT
+    }
+    else if (ptv=='k'||ptv=='K'){
+       printf ("\n"); goto bab;
+;    }
+    else{
+        printf("\n ERROR!!! (Silahkan Masukan Pilihan Yang Tepat)\n");
+        goto ulangiPilihan6;
+    }
+ }
+
+ else if (x==7){
+    ulangiPilihan7:
+    printf("\n*PERHITUNGAN KONVERSI*\n");
+    printf("(P) Perhitungan Rumus beserta Penjelasan Singkat\n");
+    printf("(T) Soal Latihan\n");
+    printf("(V) Video Materi\n");
+    printf("(K) KELUAR\n");
+    printf("MASUKAN PILIHAN ANDA : ");
+    scanf(" %c", &ptv);
+    if (ptv=='P'||ptv=='p'){
+    ulangiPerhitungan7:
+    printf("\n");
+    konversi();
+    printf("\n");
+    printf("-----------------------------------------------------\n");
+    printf("Kembali ke Perhitungan Rumus? (Ya (Y) or Tidak (N)) = ");
+    scanf(" %c", &ulang);
+    printf("-----------------------------------------------------\n");
+           if (ulang == 'y' ||ulang == 'Y'){goto ulangiPerhitungan7;}
+           else if (ulang == 'n' ||ulang == 'N'){goto ulangiPilihan7;}
+           else {printf("\nERROR!!!\n");}
+    }
+    else if (ptv=='T'||ptv=='t'){
+        printf("\n Masih Dalam Proses Pembuatan/n");
+    }
+    else if (ptv=='V'||ptv=='v'){
+        printf("\nAkses Link Berikut ini untuk menonton Video Penjelasan Materi : /n"); //LINK VIDEO YT
+    }
+    else if (ptv=='k'||ptv=='K'){
+       printf ("\n"); goto bab;
+;    }
+    else{
+        printf("\n ERROR!!! (Silahkan Masukan Pilihan Yang Tepat)\n");
+        goto ulangiPilihan7;
+    }
+ }
+
+else if (x==8){
+    ulangiPilihan8:
+    printf("\n*PERHITUNGAN HIMPUNAN*\n");
+    printf("(P) Perhitungan Rumus beserta Penjelasan Singkat\n");
+    printf("(T) Soal Latihan\n");
+    printf("(V) Video Materi\n");
+    printf("(K) KELUAR\n");
+    printf("MASUKAN PILIHAN ANDA : ");
+    scanf(" %c", &ptv);
+    if (ptv=='P'||ptv=='p'){
+    ulangiPerhitungan8:
+    printf("\n");
+    himpunan();
+    printf("\n");
+    printf("-----------------------------------------------------\n");
+    printf("Kembali ke Perhitungan Rumus? (Ya (Y) or Tidak (N)) = ");
+    scanf(" %c", &ulang);
+    printf("-----------------------------------------------------\n");
+           if (ulang == 'y' ||ulang == 'Y'){goto ulangiPerhitungan8;}
+           else if (ulang == 'n' ||ulang == 'N'){goto ulangiPilihan8;}
+           else {printf("\nERROR!!!\n");}
+    }
+    else if (ptv=='T'||ptv=='t'){
+        printf("\n Masih Dalam Proses Pembuatan/n");
+    }
+    else if (ptv=='V'||ptv=='v'){
+        printf("\nAkses Link Berikut ini untuk menonton Video Penjelasan Materi : /n"); //LINK VIDEO YT
+    }
+    else if (ptv=='k'||ptv=='K'){
+       printf ("\n"); goto bab;
+;    }
+    else{
+        printf("\n ERROR!!! (Silahkan Masukan Pilihan Yang Tepat)\n");
+        goto ulangiPilihan8;
+    }
+ }
+
+else if (x==9){
+    ulangiPilihan9:
+    printf("\n*PERHITUNGAN FAKTORIAL, PERMUTASI, KOMBINASI*\n");
+    printf("(P) Perhitungan Rumus beserta Penjelasan Singkat\n");
+    printf("(T) Soal Latihan\n");
+    printf("(V) Video Materi\n");
+    printf("(K) KELUAR\n");
+    printf("MASUKAN PILIHAN ANDA : ");
+    scanf(" %c", &ptv);
+    if (ptv=='P'||ptv=='p'){
+    ulangiPerhitungan9:
+    printf("\n");
+    FPC();
+    printf("\n");
+    printf("-----------------------------------------------------\n");
+    printf("Kembali ke Perhitungan Rumus? (Ya (Y) or Tidak (N)) = ");
+    scanf(" %c", &ulang);
+    printf("-----------------------------------------------------\n");
+           if (ulang == 'y' ||ulang == 'Y'){goto ulangiPerhitungan9;}
+           else if (ulang == 'n' ||ulang == 'N'){goto ulangiPilihan9;}
+           else {printf("\nERROR!!!\n");}
+    }
+    else if (ptv=='T'||ptv=='t'){
+        printf("\n Masih Dalam Proses Pembuatan/n");
+    }
+    else if (ptv=='V'||ptv=='v'){
+        printf("\nAkses Link Berikut ini untuk menonton Video Penjelasan Materi : /n"); //LINK VIDEO YT
+    }
+    else if (ptv=='k'||ptv=='K'){
+       printf ("\n"); goto bab;
+;    }
+    else{
+        printf("\n ERROR!!! (Silahkan Masukan Pilihan Yang Tepat)\n");
+        goto ulangiPilihan9;
+    }
+ }
+
+ else if (x==11){
+     break;
+ }
+
+ else {
+ printf ("ERROR");
+ }
+printf("\n");
+printf("=====================================================\n");
+printf("ULANGI PROGRAM? (YA (Y) or TIDAK (N)) : ");
+scanf(" %c", &ulang);
+printf("=====================================================\n\n");
+  }
+while(ulang == 'y' ||ulang == 'Y');
+
+printf ("\n\n\n\t\t\t\t\t\t\t-END-\n\n\n");
+printf ("\n\nTERIMA KASIH : )\n\n");
+return 0;
+}
+
+/*
+APA YANG INGIN DITAMBAHKAN LAGI?
+Kelompok kami ingin menambahkan beberapa hal manarik lagi berupa:
+- Latihan Soal untuk setiap Bab
+- Memperbanyak Bab dan Materi Matematika lagi
+- Program bisa menyimpan perkembangan nilai dari soal latihan user
+- Memberi Tampilan yang lebih menarik pada Outout Program 
+*/
